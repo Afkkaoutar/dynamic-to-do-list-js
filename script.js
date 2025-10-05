@@ -11,25 +11,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const li = document.createElement('li');
-
-        const taskSpan = document.createElement('span');
-        taskSpan.textContent = taskText;
-        li.appendChild(taskSpan);
+        li.textContent = taskText;
 
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         removeButton.className = 'remove-btn';
-        removeButton.onclick = function() {
-            taskList.removeChild(li);
-        };
-        li.appendChild(removeButton);
+        removeButton.addEventListener('click', function() {
+            li.remove();
+        });
 
+        li.appendChild(removeButton);
         taskList.appendChild(li);
         taskInput.value = '';
     }
 
     addButton.addEventListener('click', addTask);
-
     taskInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             addTask();
